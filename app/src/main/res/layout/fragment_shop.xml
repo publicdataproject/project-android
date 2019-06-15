@@ -8,5 +8,11 @@
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="shop" />
+    <com.google.android.gms.maps.MapView
+            android:layout_marginTop="50dp"
+            android:id="@+id/mv_shop_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:name="com.google.android.gms.maps.MapFragment"/>
 
 </LinearLayout>
