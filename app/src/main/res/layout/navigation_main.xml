@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              android:weightSum="4">
+    <RelativeLayout
+            android:id="@+id/rl_nav_main_home"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+        <TextView
+                android:text="home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp" android:textColor="@color/design_default_color_primary_dark"
+                android:textStyle="bold"/>
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/rl_nav_main_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+        <TextView
+                android:text="shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp" android:textColor="@color/design_default_color_primary_dark"
+                android:textStyle="bold"/>
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/rl_nav_main_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+        <TextView
+                android:text="progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp" android:textColor="@color/design_default_color_primary_dark"
+                android:textStyle="bold"/>
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/rl_nav_main_mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+        <TextView
+                android:text="mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp" android:textColor="@color/design_default_color_primary_dark"
+                android:textStyle="bold"/>
+    </RelativeLayout>
+</LinearLayout>
