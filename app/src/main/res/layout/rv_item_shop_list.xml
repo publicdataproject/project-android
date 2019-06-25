@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:id="@+id/rl_item_container"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="#FFFFFF"
+        android:layout_width="300dp"
+        android:layout_height="100dp">
+    <ImageView
+            android:id="@+id/iv_item_shop_img"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_width="100dp" android:layout_height="100dp"/>
+    <LinearLayout
+            android:layout_marginStart="15dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_item_shop_img"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:orientation="vertical">
+        <TextView
+                android:id="@+id/tv_item_shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:letterSpacing="-0.01"
+                android:textColor="#000000"
+                android:text="하나로 농협"/>
+
+        <TextView
+                android:text="구로구"
+                android:id="@+id/tv_item_shop_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="#4d4d4d"
+                android:letterSpacing="-0.02"/>
+    </LinearLayout>
+
+
+</RelativeLayout>
