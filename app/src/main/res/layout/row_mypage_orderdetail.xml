@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="15dp"
+        android:orientation="horizontal"
+>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="아스파라거스"
+            android:textColor="@color/colordetail"
+            android:textSize="14sp"
+    />
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1개 X 4000원"
+            android:textColor="@color/colordetail"
+            android:textSize="14sp"
+            android:gravity="right"
+    />
+
+
+</LinearLayout>

@@ -3,4 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="주문목록">주문목록</string>
+    <string name="P">P</string>
+    <string name="총_금액">총 금액</string>
+    <string name="원">원</string>
 </resources>
