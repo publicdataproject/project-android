@@ -19,6 +19,7 @@ class HomeFragment : Fragment() {
 
         with(convertView){
 
+
         }
 
         return convertView
@@ -52,15 +53,7 @@ class HomeFragment : Fragment() {
             return 0
         }
 
-        companion object CREATOR : Parcelable.Creator<ViewPagerAdapter> {
-            override fun createFromParcel(parcel: Parcel): ViewPagerAdapter {
-                return ViewPagerAdapter(parcel)
-            }
 
-            override fun newArray(size: Int): Array<ViewPagerAdapter?> {
-                return arrayOfNulls(size)
-            }
-        }
 
     }
 

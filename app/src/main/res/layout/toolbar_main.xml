@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="@color/colorPrimary"
+        android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Loming"/>
+              android:layout_marginStart="20dp"
+              android:textColor="@color/colorLogo"
+              android:text="LOMO"/>
+    <android.support.v7.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="21dp"
+            android:layout_gravity="right"
+    />
 
 </android.support.v7.widget.Toolbar>
