@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="21dp"
             android:layout_gravity="right"
+            android:background="@drawable/icon_bag"
     />
 
 </android.support.v7.widget.Toolbar>
