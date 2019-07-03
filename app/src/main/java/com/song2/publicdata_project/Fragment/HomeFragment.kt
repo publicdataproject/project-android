@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.song2.publicdata_project.Fragment.Home.BannerFragment
 import com.song2.publicdata_project.R
 import com.song2.publicdata_project.adapter.Home.CommentAdapter
 import com.song2.publicdata_project.adapter.Home.SeasonAdapter
@@ -67,8 +68,16 @@ class HomeFragment : Fragment() {
             })
 
             if(bannerList?.size != 0){
+                bannerList?.let{
+                    for(i in 1 until it.size){
+                        bannerAdapter.addFragment(BannerFragment.newInstance(it[i]))
+                    }
+                    vp_home_fra_banner.offscreenPageLimit = 1
+                    vp_home_fra_banner.adapter = bannerAdapter
 
+                }
             }
+            indicator_home_fra_banner.setViewPager(vp_home_fra_banner)
             if(farmerList?.size != 0){
                 farmerList?.let{
                     commentAdapter.addAll(it)
