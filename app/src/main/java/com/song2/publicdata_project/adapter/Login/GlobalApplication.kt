@@ -1,48 +1,32 @@
 package com.song2.publicdata_project.adapter.Login
 
+import android.app.Activity
 import android.app.Application
 import com.kakao.auth.KakaoSDK
-import com.kakao.auth.KakaoSDK.init
 
 
-class GlobalApplication : Application() {
-    private var instance: GlobalApplication? = null
+class GlobalApplication: Application() {
 
-
-    fun getGlobalApplicationContext(): GlobalApplication {
-
-        if (instance == null) {
-
-            throw IllegalStateException("This Application does not inherit com.kakao.GlobalApplication")
-
-        }
-
-
-
-        return instance
-
+    companion object {
+        var obj: GlobalApplication? = null
+        var currentActivity: Activity? = null
     }
-
 
     override fun onCreate() {
-
         super.onCreate()
-
-        instance = this
-
-
-        // Kakao Sdk 초기화
-
-        init(KakaoSDKAdapter())
-
+        obj = this
+        KakaoSDK.init(KakaoSDKAdapter())
     }
 
+    public fun getGlobalApplicationContext():GlobalApplication{
+        return obj!!
+    }
 
-    override fun onTerminate() {
+    public fun getCurrentActivity():Activity{
+        return currentActivity!!
+    }
 
-        super.onTerminate()
-
-        instance = null
-
+    public fun setCurrentActivity(currentActivity:Activity){
+        GlobalApplication.currentActivity = currentActivity
     }
 }
