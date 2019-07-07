@@ -11,7 +11,8 @@ import com.song2.publicdata_project.R
 import com.song2.publicdata_project.model.Home.FarmerWords
 import kotlinx.android.synthetic.main.row_home_comment.view.*
 
-class CommentAdapter(val _context: Context, var items: ArrayList<FarmerWords>) : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
+class CommentAdapter(val _context: Context) : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
+    var items = ArrayList<FarmerWords>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val convertView = LayoutInflater.from(_context).inflate(R.layout.row_home_comment, parent, false)
         return CommentViewHolder(convertView)
@@ -26,7 +27,7 @@ class CommentAdapter(val _context: Context, var items: ArrayList<FarmerWords>) :
     }
 
     fun addAll(comment : java.util.ArrayList<FarmerWords>){
-        this.items.addAll(comment)
+        this.addAll(comment)
     }
 
     inner class CommentViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {

@@ -12,7 +12,8 @@ import com.song2.publicdata_project.model.Home.SeasonFruits
 import kotlinx.android.synthetic.main.row_home_season.view.*
 
 
-class SeasonAdapter(val _context: Context, var items: ArrayList<SeasonFruits>) : RecyclerView.Adapter<SeasonAdapter.SeasonViewHolder>() {
+class SeasonAdapter(val _context: Context) : RecyclerView.Adapter<SeasonAdapter.SeasonViewHolder>() {
+    var items = ArrayList<SeasonFruits>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeasonViewHolder {
         val convertView = LayoutInflater.from(_context).inflate(R.layout.row_home_season, parent, false)
         return SeasonViewHolder(convertView)

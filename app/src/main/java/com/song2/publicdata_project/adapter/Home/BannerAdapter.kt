@@ -1,5 +1,6 @@
 package com.song2.publicdata_project.adapter.Home
 
+import android.app.Activity
 import android.content.Context
 import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
@@ -10,7 +11,9 @@ import com.bumptech.glide.Glide
 import com.song2.publicdata_project.R
 import com.song2.publicdata_project.model.Home.Banner
 
-class BannerAdapter(val context : Context, var bannerList : ArrayList<Banner>):PagerAdapter() {
+class BannerAdapter(val context : Context):PagerAdapter() {
+
+        var bannerList = ArrayList<Banner>()
     private val inflater : LayoutInflater
 
     init {
@@ -22,7 +25,7 @@ class BannerAdapter(val context : Context, var bannerList : ArrayList<Banner>):P
 
         val img : ImageView = layout.findViewById(R.id.iv_home_banner)
 
-        Glide.with(context).load(bannerList[position].bannerImage).into(img)
+        Glide.with(Activity()).load(bannerList[position].bannerImage).into(img)
 
         container.addView(layout,0)
 

@@ -25,54 +25,60 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val convertView = inflater.inflate(R.layout.fragment_home, container, false)
+        //val retrofit: Retrofit = Controller.instance!!.retrofit()
+        var networkService : ServerInterface? = Controller.instance?.buildServerInterface()
+        var api = networkService?.homeList()
 
-//        val retrofit: Retrofit = Controller.instance!!.retrofit()
-        val networkService : ServerInterface = Controller.instance!!.networkService
+        var bannerList : ArrayList<Banner> ?= null
+//        var seasonList : ArrayList<SeasonFruits> ? = null
+//        var farmerList : ArrayList<FarmerWords> ?= null
 
-        var bannerList : ArrayList<Banner>
-
-        var commentAdapter : CommentAdapter? = null
-        rv_home_fra_comment.adapter = commentAdapter
-        val lm = LinearLayoutManager(context)
+        lateinit var commentAdapter : CommentAdapter
+        rv_home_fra_comment?.adapter = commentAdapter
+        val lm : LinearLayoutManager = LinearLayoutManager(activity)
+        lm.orientation = LinearLayoutManager.HORIZONTAL
         rv_home_fra_comment.layoutManager = lm
         rv_home_fra_comment.setHasFixedSize(true)
 
-        var seasonAdapter : SeasonAdapter? = null
-        rv_home_fra_season.adapter = seasonAdapter
-        val lm2 = LinearLayoutManager(context)
+        lateinit var seasonAdapter : SeasonAdapter
+        rv_home_fra_season?.adapter = seasonAdapter
+        val lm2 : LinearLayoutManager = LinearLayoutManager(activity)
+        lm2.orientation = LinearLayoutManager.HORIZONTAL
         rv_home_fra_season.layoutManager = lm2
         rv_home_fra_season.setHasFixedSize(true)
 
-        val banner = vp_home_fra_banner
-        var bannerAdapter : BannerAdapter? = null
-        banner.adapter = bannerAdapter
+//        val banner = vp_home_fra_banner
+
+        lateinit var bannerAdapter : BannerAdapter
+        vp_home_fra_banner?.adapter = bannerAdapter
 
 
-        networkService.homeList().enqueue(object : Callback<Home> {
+        api?.enqueue(object : Callback<Home> {
             override fun onResponse(call: Call<Home>?, response: Response<Home>?) {
                 var network = response!!.body()
-                if(network?.status!!.equals(200)){
-                    network.data?.farmerDtos?.let{
+//                if(network?.status!!.equals(200)){
+                    network.data.farmerDtos.let{
                         if(it.size!=0){
-                            commentAdapter!!.addAll(it)
-                            commentAdapter!!.notifyDataSetChanged()
+                            commentAdapter.addAll(it)
+                            commentAdapter.notifyDataSetChanged()
                         }
                     }
 
-                    network.data?.seasonDtos?.let{
+                    network.data.seasonDtos.let{
                         if(it.size != 0){
-                            seasonAdapter!!.addAll(it)
-                            seasonAdapter!!.notifyDataSetChanged()
+                            seasonAdapter.addAll(it)
+                            seasonAdapter.notifyDataSetChanged()
                         }
                     }
 
-                    network.data?.bannerDtos?.let{
+                    network.data.bannerDtos.let{
                         if(it.size !=0){
                             bannerList = it
-                            bannerAdapter = BannerAdapter(context!!,it)
+                            bannerAdapter.bannerList = it
+
                         }
                     }
-                }
+//                }
             }
 
             override fun onFailure(call: Call<Home>?, t: Throwable?) {

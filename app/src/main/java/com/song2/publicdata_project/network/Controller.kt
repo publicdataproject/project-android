@@ -6,22 +6,40 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class Controller : Application() {
 
-    private val baseURL = "http://52.78.161.160:8080"
-    var networkService : ServerInterface = retrofit().create(ServerInterface::class.java)
+
+    private var api: ServerInterface? = null
+    val serverInterface: ServerInterface?
+        get() {
+            api = buildServerInterface()
+            return api
+        }
 
     companion object {
-        lateinit var instance: Controller
+        var instance: Controller? = null
+        var baseURL =String.format("http://52.78.161.160:8080")
     }
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
+        Controller.instance = this
     }
 
-    fun retrofit() : Retrofit = Retrofit.Builder()
-        .baseUrl(baseURL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    fun buildServerInterface(): ServerInterface? {
+
+        synchronized(Controller::class.java) {
+
+            if (api == null) {
+
+                val retrofit = Retrofit.Builder()
+                    .baseUrl(baseURL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+
+                api = retrofit.create(ServerInterface::class.java)
+            }
+        }
+        return api
+    }
 
 
 //
