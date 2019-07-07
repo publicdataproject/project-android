@@ -29,6 +29,7 @@ class BannerAdapter(val context : Context, var bannerList : ArrayList<Banner>):P
         return layout
     }
 
+
     override fun isViewFromObject(view: View, p1 : Any): Boolean {
         return view == p1
     }

@@ -12,30 +12,29 @@ import com.song2.publicdata_project.model.Home.SeasonFruits
 import kotlinx.android.synthetic.main.row_home_season.view.*
 
 
-class SeasonAdapter(val _context: Context, var items: ArrayList<SeasonFruits>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+class SeasonAdapter(val _context: Context, var items: ArrayList<SeasonFruits>) : RecyclerView.Adapter<SeasonAdapter.SeasonViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeasonViewHolder {
         val convertView = LayoutInflater.from(_context).inflate(R.layout.row_home_season, parent, false)
         return SeasonViewHolder(convertView)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holder?.bind(items[position],_context)
+    override fun onBindViewHolder(holder: SeasonViewHolder, position: Int) {
+        holder?.bind(items,position)
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
-    fun RecyclerView.ViewHolder.bind(season: SeasonFruits, _context: Context) {
-        itemView?.tv_home_season.text = season.fruitsName
-        val img : ImageView = itemView?.iv_home_season
-        Glide.with(_context).load(season.fruitImage).into(img)
+
+    fun addAll(season : java.util.ArrayList<SeasonFruits>){
+        this.items.addAll(season)
     }
 
     inner class SeasonViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
-        fun bind (season : SeasonFruits, context : Context){
-            itemView?.tv_home_season.text = season.fruitsName
+        fun bind (season : ArrayList<SeasonFruits>, position: Int){
+            itemView?.tv_home_season.text = season[position].fruitsName
             val img : ImageView = itemView?.iv_home_season
-            Glide.with(_context).load(season.fruitImage).into(img)
+            Glide.with(_context).load(season[position].fruitImage).into(img)
         }
 
     }
