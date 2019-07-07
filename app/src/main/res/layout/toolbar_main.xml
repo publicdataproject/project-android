@@ -5,17 +5,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginStart="20dp"
-              android:textColor="@color/colorLogo"
-              android:text="LOMO"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bi_lomo"
+    />
     <android.support.v7.widget.AppCompatImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="21dp"
             android:layout_gravity="right"
-            android:background="@drawable/icon_bag"
+            android:background="@drawable/icon_cart"
     />
 
 </android.support.v7.widget.Toolbar>

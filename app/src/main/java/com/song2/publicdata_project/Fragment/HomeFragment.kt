@@ -2,127 +2,104 @@ package com.song2.publicdata_project.Fragment
 
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.view.ViewPager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.song2.publicdata_project.Fragment.Home.BannerFragment
 import com.song2.publicdata_project.R
+import com.song2.publicdata_project.adapter.Home.BannerAdapter
 import com.song2.publicdata_project.adapter.Home.CommentAdapter
 import com.song2.publicdata_project.adapter.Home.SeasonAdapter
-import com.song2.publicdata_project.model.Banner
-import com.song2.publicdata_project.model.FarmerWords
-import com.song2.publicdata_project.model.SeasonFruits
-import com.song2.publicdata_project.network.Network
+import com.song2.publicdata_project.model.Home.Banner
+import com.song2.publicdata_project.model.Home.FarmerWords
+import com.song2.publicdata_project.model.Home.Home
+import com.song2.publicdata_project.model.Home.SeasonFruits
+import com.song2.publicdata_project.network.Controller
 import com.song2.publicdata_project.network.ServerInterface
-import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import java.util.*
 
 class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val convertView = inflater.inflate(R.layout.fragment_home, container, false)
-        var api : ServerInterface? = null
-        var bannerList : ArrayList<Banner>?= null
-        var farmerList : ArrayList<FarmerWords>?= null
-        var seasonList : ArrayList<SeasonFruits>?= null
 
-        with(convertView){
-            val commentAdapter =  CommentAdapter(context)
-            val seasonAdapter = SeasonAdapter(context)
-            val bannerAdapter =  ViewPagerAdapter(childFragmentManager)
+        val retrofit: Retrofit = Controller.instance!!.retrofit()
+        val networkService : ServerInterface = Controller.instance!!.networkService
 
-            val llm1  = LinearLayoutManager(context)
-            llm1.orientation = LinearLayoutManager.HORIZONTAL
-            rv_home_fra_comment.layoutManager = llm1
-            rv_home_fra_comment.adapter = commentAdapter
+        var size : Int = 0
 
-            val llm2  = LinearLayoutManager(context)
-            rv_home_fra_season.layoutManager = llm2
-            rv_home_fra_season.adapter = seasonAdapter
+        var bannerList : ArrayList<Banner>
+        var farmerList : ArrayList<FarmerWords>
+        var seasonList : ArrayList<SeasonFruits>
 
-            vp_home_fra_banner.adapter = bannerAdapter
+        var commentAdapter : CommentAdapter? = null
+        rv_home_fra_comment.adapter = commentAdapter
+        val lm = LinearLayoutManager(context)
+        rv_home_fra_comment.layoutManager = lm
+        rv_home_fra_comment.setHasFixedSize(true)
 
-            var messagesCall = api?.homeList()
-            messagesCall?.enqueue(object : retrofit2.Callback<Network> {
-                override fun onResponse(call: Call<Network>?, response: Response<Network>?) {
-                    var network = response!!.body()
-                    if (network?.message.equals("ok")) {
-                       network.data?.get(0)?.MainDto?.let{
-                          if(it.size != 0) {
-                              bannerList = it.get(0).bannerDtos
-                              farmerList = it.get(0).farmerDtos
-                              seasonList = it.get(0).SeasonDtos
-                          }
-                       }
-                    }
-                }
-                override fun onFailure(call: Call<Network>?, t: Throwable?) {
-                    Log.v("test error : ", t.toString())
-                }
-            })
+        var seasonAdapter : SeasonAdapter? = null
+        rv_home_fra_season.adapter = seasonAdapter
+        val lm2 = LinearLayoutManager(context)
+        rv_home_fra_season.layoutManager = lm2
+        rv_home_fra_season.setHasFixedSize(true)
 
-            if(bannerList?.size != 0){
-                bannerList?.let{
-                    for(i in 1 until it.size){
-                        bannerAdapter.addFragment(BannerFragment.newInstance(it[i]))
-                    }
-                    vp_home_fra_banner.offscreenPageLimit = 1
-                    vp_home_fra_banner.adapter = bannerAdapter
+        val banner = vp_home_fra_banner
+        var bannerAdapter : BannerAdapter? = null
+        banner.adapter = bannerAdapter
 
-                }
-            }
-            indicator_home_fra_banner.setViewPager(vp_home_fra_banner)
-            if(farmerList?.size != 0){
-                farmerList?.let{
-                    commentAdapter.addAll(it)
-                    commentAdapter.notifyDataSetChanged()
-                }
-            }
-            if(seasonList?.size != 0){
-                seasonList?.let{
-                    seasonAdapter.addAll(it)
-                    seasonAdapter.notifyDataSetChanged()
+
+        networkService.homeList().enqueue(object : Callback<Home> {
+            override fun onResponse(call: Call<Home>?, response: Response<Home>?) {
+                var network = response!!.body()
+                if(network?.status!!.equals(200)){
+                    bannerList = network.data?.bannerDtos
+                    farmerList = network.data?.farmerDtos
+                    seasonList = network.data?.seasonDtos
+
+                    bannerAdapter = BannerAdapter(context!!,bannerList)
+                    commentAdapter = CommentAdapter(context!!, farmerList)
+                    seasonAdapter = SeasonAdapter(context!!, seasonList)
+
+                    size = bannerList.size
                 }
             }
 
-//            var scrollFlag = 0
-//            var page= 1
-//
-//            sv_home_fra.setOnScrollChangeListener(object : NestedScrollView.OnScrollChangeListener {
-//                override fun onScrollChange(v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
-//
-//                }
-//            })
+            override fun onFailure(call: Call<Home>?, t: Throwable?) {
+                Log.i("error","동신")
+            }
+        })
 
+        fun init(){
+            val handler = Handler()
+            val Update = Runnable {
+                if (currentPage == size) {
+                    currentPage = 0
+                }
+                mPager!!.setCurrentItem(currentPage++, true)
+            }
+            val swipeTimer = Timer()
+            swipeTimer.schedule(object : TimerTask() {
+                override fun run() {
+                    handler.post(Update)
+                }
+            }, 3000, 3000)
         }
 
         return convertView
     }
-    override fun onResume() {
-        super.onResume()
+    companion object {
+
+        private var mPager: ViewPager? = null
+        private var currentPage = 0
     }
-
-    inner class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager){
-        private val mFragmentList = ArrayList<Fragment>()
-
-
-        override fun getItem(position: Int): Fragment {
-            return mFragmentList[position]
-        }
-
-        override fun getCount(): Int {
-            return mFragmentList.size
-        }
-
-        fun addFragment(fragment: Fragment) {
-            mFragmentList.add(fragment)
-        }
-    }
-
 }

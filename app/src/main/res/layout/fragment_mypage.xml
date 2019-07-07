@@ -20,16 +20,16 @@
             android:text="이효진님의 포인트"
             android:textSize="18sp"
             android:textColor="#4d4d4d"
-        />//통신
+        />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="right"
+            android:gravity="end"
             android:textColor="#000000"
             android:text="2401"
             android:textSize="24sp"
-            android:layout_marginEnd="3dp"/>//통신
+            android:layout_marginEnd="3dp"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,9 +41,10 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:textSize="12sp"
             android:textColor="#4d4d4d"
-            android:text="방문 매장"
+            android:text="@string/방문매장"
     />
 
    <android.support.v7.widget.RecyclerView
