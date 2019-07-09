@@ -10,6 +10,7 @@
             android:layout_weight="1"
             android:gravity="center">
         <ImageView
+                android:id="@+id/iv_nav_main_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/home"
@@ -22,6 +23,7 @@
             android:layout_weight="1"
             android:gravity="center">
         <ImageView
+                android:id="@+id/iv_nav-main_shop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/map"/>
@@ -33,6 +35,7 @@
             android:layout_weight="1"
             android:gravity="center">
         <ImageView
+                android:id="@+id/iv_nav_main_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/step"/>
@@ -44,6 +47,7 @@
             android:layout_weight="1"
             android:gravity="center">
         <ImageView
+                android:id="@+id/iv_nav_main_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/my"/>

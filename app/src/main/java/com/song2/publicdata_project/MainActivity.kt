@@ -1,12 +1,17 @@
 package com.song2.publicdata_project
 
+import android.graphics.PorterDuff
 import android.os.Bundle
+import android.support.design.widget.TabLayout
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.AppCompatDrawableManager
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
+import android.widget.TableLayout
 import com.song2.publicdata_project.adapter.MainPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -26,14 +31,28 @@ class MainActivity : AppCompatActivity() {
         tl_main_menu_bar.setupWithViewPager(vp_main_fragment)
         tl_main_menu_bar.selectedTabPosition
 
-        val navMenuMainLayout : View = (this.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
-            .inflate(R.layout.navigation_main, null, false)
-        tl_main_menu_bar.getTabAt(0)!!.customView = navMenuMainLayout.findViewById(R.id.rl_nav_main_home) as RelativeLayout
-        tl_main_menu_bar.getTabAt(1)!!.customView = navMenuMainLayout.findViewById(R.id.rl_nav_main_shop) as RelativeLayout
-        tl_main_menu_bar.getTabAt(2)!!.customView = navMenuMainLayout.findViewById(R.id.rl_nav_main_progress) as RelativeLayout
-        tl_main_menu_bar.getTabAt(3)!!.customView = navMenuMainLayout.findViewById(R.id.rl_nav_main_mypage) as RelativeLayout
+
+        tl_main_menu_bar.getTabAt(0)?.setIcon(R.drawable.home_select)
+        tl_main_menu_bar.getTabAt(1)?.setIcon(R.drawable.map)
+        tl_main_menu_bar.getTabAt(2)?.setIcon(R.drawable.step)
+        tl_main_menu_bar.getTabAt(3)?.setIcon(R.drawable.my)
 
 
+        tl_main_menu_bar.addOnTabSelectedListener(object :  TabLayout.OnTabSelectedListener {
+            val selectColor = ContextCompat.getColor(applicationContext,R.color.colorLogo)
+            val unselectColor = ContextCompat.getColor(applicationContext,R.color.unselect)
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                tab?.icon?.setColorFilter(unselectColor, PorterDuff.Mode.SRC_IN)
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.icon?.setColorFilter(selectColor, PorterDuff.Mode.SRC_IN)
+            }
+
+        })
 
         vp_main_fragment.addOnAdapterChangeListener(object : ViewPager.OnPageChangeListener,
             ViewPager.OnAdapterChangeListener {
@@ -48,21 +67,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-
-                tl_main_menu_bar.getTabAt(0)?.setIcon(R.drawable.home)
-                tl_main_menu_bar.getTabAt(1)?.setIcon(R.drawable.map)
-                tl_main_menu_bar.getTabAt(2)?.setIcon(R.drawable.step)
-                tl_main_menu_bar.getTabAt(3)?.setIcon(R.drawable.my)
-
-                when(position) {
-
-                    0   ->    tl_main_menu_bar.getTabAt(0)?.setIcon(R.drawable.home_select)
-                    1   ->    tl_main_menu_bar.getTabAt(1)?.setIcon(R.drawable.map_select)
-                    2   ->    tl_main_menu_bar.getTabAt(2)?.setIcon(R.drawable.step_select)
-                    3   ->    tl_main_menu_bar.getTabAt(3)?.setIcon(R.drawable.my_select)
-                }
-
-
 
             }
         })

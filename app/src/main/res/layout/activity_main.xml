@@ -33,7 +33,7 @@
         android:layout_alignParentStart="true"
         app:tabIndicatorGravity="top"
         app:tabIndicatorHeight="4dp"
-        app:tabIconTint="@color/colorLogo"
+        android:background="#ffffff"
         app:tabIndicatorColor="@color/colorLogo"
     >
 

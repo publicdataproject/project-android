@@ -33,22 +33,7 @@ public abstract class ViewPagerAdapter<T> extends PagerAdapter {
         notifyDataSetChanged();
     }
 
-    /**
-     * Child should override this method and return the View that it wish to inflate.
-     * View binding with data should be in another method - bindView().
-     *
-     * @param listPosition The current list position for you to determine your own view type.
-     */
     protected abstract View inflateView(int viewType, int listPosition);
-
-    /**
-     * Child should override this method to bind the View with data.
-     * If you wish to implement ViewHolder pattern, you may use setTag() on the convertView and
-     * pass in your ViewHolder.
-     *
-     * @param convertView  The View that needs to bind data with.
-     * @param listPosition The current list position for you to get data from itemList.
-     */
     protected abstract void bindView(View convertView, int listPosition, int viewType);
 
     public Banner getItem(int listPosition) {
