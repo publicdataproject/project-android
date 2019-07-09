@@ -1,7 +1,7 @@
 package com.song2.publicdata_project.model.Home
 
-class SeasonFruits (
-    var fruitImage : String ,
-    var fruitsName :String ,
-    var id : Int
+data class SeasonFruits (
+    var id : Long,
+    var fruitsImage : String,
+    var fruitsName :String
 )

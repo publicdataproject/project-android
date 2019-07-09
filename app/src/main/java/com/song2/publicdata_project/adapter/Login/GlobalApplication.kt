@@ -2,7 +2,6 @@ package com.song2.publicdata_project.adapter.Login
 
 import android.app.Activity
 import android.app.Application
-import com.kakao.auth.KakaoSDK
 
 
 class GlobalApplication: Application() {
@@ -15,7 +14,7 @@ class GlobalApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         obj = this
-        KakaoSDK.init(KakaoSDKAdapter())
+//        KakaoSDK.init(KakaoSDKAdapter())
     }
 
     public fun getGlobalApplicationContext():GlobalApplication{

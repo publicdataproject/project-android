@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="#ffffff">
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -14,20 +15,22 @@
             android:orientation="horizontal"
     >
         <TextView
+            android:id="@+id/tv_mypage_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="이효진님의 포인트"
+            android:text=""
             android:textSize="18sp"
             android:textColor="#4d4d4d"
         />
         <TextView
+            android:id="@+id/tv_mypage_point"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
             android:textColor="#000000"
-            android:text="2401"
+            android:text=""
             android:textSize="24sp"
             android:layout_marginEnd="3dp"/>
         <TextView
@@ -46,9 +49,47 @@
             android:textColor="#4d4d4d"
             android:text="@string/방문매장"
     />
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+       <android.support.v7.widget.RecyclerView
+               android:id="@+id/rv_mypage_shoplist"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
+        <FrameLayout
+                android:id="@+id/fl_mypage_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foregroundGravity="center"
+        >
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg"
+                    android:layout_gravity="center"
 
-   <android.support.v7.widget.RecyclerView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"/>
+            />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/방문매장이없습니다"
+                    android:textColor="#c4c4c4"
+                    android:layout_gravity="center"
+            />
+        </FrameLayout>
+    </FrameLayout>
+    <Button
+            android:id="@+id/btn_mypage_others"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorLogo"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/주변매장둘러보기"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+    />
 
 </LinearLayout>

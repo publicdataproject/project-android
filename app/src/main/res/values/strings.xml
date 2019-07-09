@@ -10,4 +10,6 @@
     <string name="제철_농축산물">제철 농축산물</string>
     <string name="방문매장">방문 매장</string>
     <string name = "kakao_app_key">6d003994f84d6728385ff98fdbca6dcc </string>
+    <string name = "주변매장둘러보기">주변 매장 둘러보기</string>
+    <string name ="방문매장이없습니다">방문 매장이 없습니다.</string>
 </resources>
