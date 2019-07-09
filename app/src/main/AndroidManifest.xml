@@ -16,10 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+        <uses-library
+                android:name="org.apache.http.legacy"
+                android:required="false"/>
+
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="AIzaSyAjK6hyHhIbZpqPVtXAXfL1oj-bm-kLoh8"/>
+
+        <activity
+                android:name=".ShopIntroActivity"
+                android:label="@string/title_activity_shop_intro"
+                android:theme="@style/AppTheme">
+        </activity>
+        <activity android:name=".ProductListActivity">
+        </activity>
     </application>
 
 </manifest>

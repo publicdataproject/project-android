@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ShopIntroActivity">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="vertical"
+    >
+
+        <RelativeLayout
+                android:id="@+id/rl_toolbar_shop_intro"
+                android:layout_width="match_parent" android:layout_height="46dp">
+            <ImageView
+                    android:layout_marginStart="22.7dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:src="@drawable/icon_arrow_3"
+            />
+            <TextView
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#4d4d4d"
+                    android:letterSpacing="-0.01"
+                    android:text="매장 소개"
+            />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+            <ImageView
+                    android:layout_width="match_parent" android:layout_height="170dp"
+                    android:src="@drawable/img"/>
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                  android:background="#d3d3d3"/>
+            <android.support.v7.widget.CardView
+                    android:id="@+id/cv_shop_intro_act_shop_info"
+                    android:layout_width="320dp"
+                                                android:layout_height="90dp"
+                                                android:layout_marginTop="135dp"
+                                                android:layout_centerHorizontal="true">
+                <TextView
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/tv_shop_intro_act_shop_name"
+                        android:textColor="#000000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:letterSpacing="-0.01"
+                        android:gravity="center_horizontal"
+                        android:text="완주 고산농협"
+                />
+
+                <TextView
+                        android:layout_marginTop="52dp"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/tv_shop_intro_act_shop_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#4d4d4d"
+                        android:letterSpacing="-0.02"
+                        android:gravity="center_horizontal"
+                        tools:text="완주군 고산면 고산로77"
+                />
+
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                    android:layout_marginTop="39dp"
+                    android:layout_below="@+id/cv_shop_intro_act_shop_info"
+                    android:layout_width="match_parent" android:layout_height="39dp">
+                <LinearLayout
+                        android:layout_marginStart="20.5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <ImageView android:layout_width="19dp" android:layout_height="18dp"
+                               android:src="@drawable/star"/>
+                    <ImageView android:layout_width="19dp" android:layout_height="18dp"
+                               android:src="@drawable/star"/>
+                    <ImageView android:layout_width="19dp" android:layout_height="18dp"
+                               android:src="@drawable/star"/>
+                    <ImageView android:layout_width="19dp" android:layout_height="18dp"
+                               android:src="@drawable/star"/>
+                    <ImageView android:layout_width="19dp" android:layout_height="18dp"
+                               android:src="@drawable/star"/>
+                </LinearLayout>
+
+                <TextView
+                        android:layout_marginStart="19dp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="26sp"
+                        android:textColor="#000000"
+                        android:letterSpacing="-0.01"
+                        android:gravity="end"
+                        android:text="4.5"
+                />
+
+                <TextView
+                        android:layout_marginStart="130dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#9f9f9f"
+                        android:letterSpacing="-0.01"
+                        tools:text="더보기"
+                />
+                <ImageView
+                        android:layout_marginStart="2dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:src="@drawable/icon_arrow_more"/>
+
+            </LinearLayout>
+            
+            <TextView
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="353dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:letterSpacing="-0.03"
+                    android:text="상품 카테고리"
+            />
+
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_shop_frag_category_list"
+                    android:layout_marginTop="395dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="128dp" android:layout_alignParentStart="true">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                    android:layout_below="@+id/rv_shop_frag_category_list"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:letterSpacing="-0.03"
+                    android:text="행사 상품"
+            />
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_shop_frag_sale_product"
+                    android:layout_below="@+id/rv_shop_frag_category_list"
+                    android:layout_marginTop="103dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <Button
+                    android:id="@+id/btn_shop_intro_frag_more_product"
+                    android:layout_below="@+id/rv_shop_frag_sale_product"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_height="60dp"
+                    android:background="@color/colorPrimary"
+                    android:text="상품 보러가기"
+            />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</ScrollView>
